@@ -94,7 +94,7 @@
 													echo "<td>" . $data->stok . "</td>";
 													echo "<td><img class='img-fluid w-25' src='". base_url('assets/uploads/') . $data->gambar . "' alt=''></td>";
 													echo "<td>" . $data->kode . "</td>";
-													echo "<td><a class='btn btn-warning' href='". base_url('Home/beli') . $data->id ."'><i class='fa fa-shopping-cart'></i>Beli</a></td>";
+													echo "<td><a class='btn btn-warning' href='". base_url('Home/beli/') . $data->id ."'><i class='fa fa-shopping-cart'></i>Beli</a></td>";
 													echo "</tr>";
 												}
 											} else { // Jika data tidak ada

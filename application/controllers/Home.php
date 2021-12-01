@@ -17,7 +17,7 @@ class Home extends CI_Controller
 	{
 		$this->load->library('pagination'); // Load librari paginationnya
 
-		$data['model'] = $this->m->view(); 
+		$data['model'] = $this->m->view();
 		$data['tb'] = $this->m->getData('barang', null)->num_rows();
 		$this->load->view('home', $data);
 	}
@@ -50,6 +50,36 @@ class Home extends CI_Controller
 
 	public function beli($id)
 	{
+		$w = array('id' => $id,);
+		$old = $this->m->getData('barang', $w)->row();
+
+		$qty = $old->stok - 1;
+		$data = array('stok' => $qty,);
+		$this->m->upd('barang', $data, $w);
+
+		$cart = $this->m->getData('cart', ['id_barang' => $id])->row();
+		if (!empty($cart)) {
+			$w = array('id_barang' => $id,);
+			$stk = $cart->qty + 1;
+			$sb = $cart->subtotal + $old->harga;
+			$data = array(
+				'qty' => $stk,
+				'subtotal' => $sb,
+			);
+			$this->m->upd('cart', $data, $w);
+		} else {
+			$stk = 1;
+			$sb = $old->harga;
+			$data = array(
+				'id_barang' => $id,
+				'qty' => $stk,
+				'subtotal' => $sb,
+			);
+			$this->m->ins('cart', $data);
+		}
+
+		$this->session->set_flashdata('toast', 'success:Barang masuk dalam cart anda');
+		redirect('Home', 'refresh');
 	}
 }
 

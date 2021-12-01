@@ -12,7 +12,7 @@ class M_basic extends CI_Model
 		}
 
 		if ($t == "cart") {
-			$this->db->join('barang', 'cart.id_barang = barang.id', 'left');
+			$this->db->join('barang', 'barang.id = cart.id_barang', 'left');
 		}
 
 		return $this->db->get($t);
@@ -33,7 +33,7 @@ class M_basic extends CI_Model
 		$this->db->update($t, $data, $w);
 	}
 
-	public function del($t, $w)
+	public function del($t, $w = null)
 	{
 		$this->db->where($w);
 		$this->db->delete($t);
@@ -43,7 +43,7 @@ class M_basic extends CI_Model
 	{
 		$this->load->library('pagination'); // Load librari paginationnya
 
-		$query = "SELECT * FROM barang"; // Query untuk menampilkan semua data barang
+		$query = "SELECT * FROM barang where stok > 0"; // Query untuk menampilkan semua data barang
 
 		$config['base_url'] = base_url('Home/index');
 		$config['total_rows'] = $this->db->query($query)->num_rows();
