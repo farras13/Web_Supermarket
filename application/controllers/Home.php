@@ -15,8 +15,6 @@ class Home extends CI_Controller
 
 	public function index()
 	{
-		$this->load->library('pagination'); // Load librari paginationnya
-
 		$data['model'] = $this->m->view();
 		$data['tb'] = $this->m->getData('barang', null)->num_rows();
 		$this->load->view('home', $data);
