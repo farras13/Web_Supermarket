@@ -33,7 +33,7 @@
 									<input type="hidden" name="tb" id="tb" value="<?= $tb ?>" disabled>
 									<div class="col-md-4">
 										<div class="form-floating">
-											<input class="form-control" id="barang" name="barang" type="text">
+											<input class="form-control" id="barang" name="barang" type="text" onChange='getoutput()'>
 											<label for="barang">Nama Barang</label>
 										</div>
 									</div>
@@ -51,7 +51,7 @@
 									</div>
 									<div class="col-md-8">
 										<div class="form-floating">
-											<input class="form-control" id="inputfile" name="inputfile" type="file" onChange='getoutput()' accept="image/png, image/jpeg">
+											<input class="form-control" id="inputfile" name="inputfile" type="file"  accept="image/png, image/jpeg">
 											<label for="inputfile">Gambar</label>
 										</div>
 									</div>
@@ -149,8 +149,7 @@
 	<script>
 		function getoutput() {
 			// getfilename
-			var fileInput = document.getElementById('upload');
-			var filename = inputfile.value.substr(inputfile.value.lastIndexOf('\\') + 1).split('.')[0];
+			var filename = document.getElementById('barang').value;
 			var hitung = filename.trim().split(/\s+/).length;
 
 			if (hitung < 2) {

@@ -25,7 +25,7 @@
 					<div class="h-100">
 						<div class="align-self-center text-center p-5">
 
-							<h2 style="font-size: 32pt;">Form Supermarket</h2>
+							<h2 style="font-size: 32pt;">Cart Table</h2>
 							<hr class="w-100">
 
 							<table class="table table-bordered">
@@ -52,7 +52,7 @@
 												<?php else: ?>
 													<a href="<?= base_url('cart/plus/').$c->id_barang ?>" class="btn btn-warning"><i class="fa fa-plus"></i></a>
 												<?php endif; ?>
-
+												<a href="<?= base_url('cart/hps/').$c->id_barang ?>" class="btn btn-danger"><i class="fa fa-close"></i></a>
 											</td>
 										</tr>
 									<?php $hrg += $c->subtotal; endforeach ?>
@@ -67,7 +67,7 @@
 							</table>
 						
 							<hr class="w-100 mt-4">
-							<a class="mx-auto btn btn-danger w-50 mt-4" href="<?= base_url('Cart/out') ?>"><i class="fa fa-home"></i> CheckOut</a>
+							<a class="mx-auto btn btn-danger w-50 mt-4" href="<?= base_url('Cart/out') ?>"><i class="fa fa-check"></i> CheckOut</a>
 							<a class="mx-auto btn btn-dark w-50 mt-4 mb-5" href="<?= base_url('Home') ?>"><i class="fa fa-home"></i> Go Home</a>
 							<hr class="w-100">
 						</div>

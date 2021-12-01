@@ -47,7 +47,7 @@ class M_basic extends CI_Model
 
 		$config['base_url'] = base_url('Home/index');
 		$config['total_rows'] = $this->db->query($query)->num_rows();
-		$config['per_page'] = 1;
+		$config['per_page'] = 10;
 		$config['uri_segment'] = 3;
 		$config['num_links'] = 3;
 

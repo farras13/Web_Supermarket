@@ -67,6 +67,20 @@ class Cart extends CI_Controller {
 		redirect('Cart', 'refresh');
 	}
 
+	public function hps($id)
+	{
+			$old = $this->m->getData('cart', ['id_barang' => $id])->row();
+			$brg = $this->m->getData('barang', ['id' => $id])->row();
+			$stok = $brg->stok + $old->qty;
+			$data = array(
+				'stok' => $stok,
+			);
+			$this->m->upd('barang', $data, ['id' => $old->id_barang]);
+			$this->m->del('cart', ['id_cart' => $old->id_cart]);
+			$this->session->set_flashdata('toast', 'success:Discard Berhasil');
+			redirect('Cart', 'refresh');
+	}
+
 	public function out()
 	{
 		$old = $this->m->getData('cart')->result();
