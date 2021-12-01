@@ -60,7 +60,8 @@
 								<tfoot>
 									<tr>
 										<th class="text-end" colspan="3">Total Harga</th>
-										<th class="text-center">Rp. <?php $total = $hrg + 19000; echo number_format($total,2,",","."); ?></th>
+										
+										<th class="text-center">Rp. <?php if($hrg != null): $total = $hrg + 19000; echo number_format($total,2,",","."); else: echo number_format(0,0,",","."); endif; ?></th>
 										<th></th>
 									</tr>
 								</tfoot>
