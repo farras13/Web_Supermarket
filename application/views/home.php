@@ -69,32 +69,49 @@
 							<hr class="w-100 mt-4">
 							<h2 style="font-size: 32pt;">Tabel Barang Supermarket</h2>
 							<hr class="w-100">
-							<table class="table table-striped table-hover ">
-								<thead>
-									<tr>
-										<th>No</th>
-										<th>Nama Barang</th>
-										<th>Harga</th>
-										<th>Stok</th>
-										<th>Gambar</th>
-										<th>Kode</th>
-										<th>Action</th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php $n=1; foreach($barang as $b): ?>
+							<div class="table-responsive">
+								<table class="table table-light table-striped table-hover align-middle">
+									<thead>
 										<tr>
-											<td><?= $n ?></td>
-											<td><?= $b->nama_barang ?></td>
-											<td><?= $b->harga ?></td>
-											<td><?= $b->stok ?></td>
-											<td><img class="img-fluid w-25" src="<?= base_url('assets/uploads/').$b->gambar ?>" alt=""></td>
-											<td><?= $b->kode ?></td>
-											<td><a class="btn btn-warning" href="<?= base_url('Home/beli').$b->id ?>"><i class="fa fa-pen"></i>Beli</a></td>
+											<th>No</th>
+											<th>Nama Barang</th>
+											<th>Harga</th>
+											<th>Stok</th>
+											<th>Gambar</th>
+											<th>Kode</th>
+											<th>Action</th>
 										</tr>
-									<?php endforeach ?>
-								</tbody>
-							</table>
+									</thead>
+									<tbody>
+										<?php
+											if (!empty($model['barang'])) {
+												$n = 1; // Jika data pada database tidak sama dengan empty (alias ada datanya)
+												foreach ($model['barang'] as $data) { // Lakukan looping pada variabel siswa dari controller
+													echo "<tr>";
+													echo "<td>" . $n . "</td>";
+													echo "<td>" . $data->nama_barang . "</td>";
+													echo "<td>" . $data->harga . "</td>";
+													echo "<td>" . $data->stok . "</td>";
+													echo "<td><img class='img-fluid w-25' src='". base_url('assets/uploads/') . $data->gambar . "' alt=''></td>";
+													echo "<td>" . $data->kode . "</td>";
+													echo "<td><a class='btn btn-warning' href='". base_url('Home/beli') . $data->id ."'><i class='fa fa-shopping-cart'></i>Beli</a></td>";
+													echo "</tr>";
+												}
+											} else { // Jika data tidak ada
+												echo "<tr><td colspan='5'>Data tidak ada</td></tr>";
+											} 
+										
+										?>
+									</tbody>
+								</table>
+							</div>
+							<?php
+							// Tampilkan link-link paginationnya
+							echo $model['pagination'];
+							?>
+							<hr class="w-100 mt-4">
+							<a class="mx-auto btn btn-dark w-50 mt-4 mb-5" href="<?= base_url('Cart') ?>"><i class="fa fa-shopping-cart"></i> Go to Cart</a>
+							<hr class="w-100">
 						</div>
 					</div>
 				</div>

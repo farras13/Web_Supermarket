@@ -1,20 +1,23 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Home extends CI_Controller {
-	
+class Home extends CI_Controller
+{
+
 	public function __construct()
 	{
 		parent::__construct();
 		//Do your magic here
 		$this->load->model('M_basic', 'm');
 	}
-	
+
 
 	public function index()
 	{
-		$data['barang'] = $this->m->getData('barang', null)->result();
+		$this->load->library('pagination'); // Load librari paginationnya
+
+		$data['model'] = $this->m->view(); 
 		$data['tb'] = $this->m->getData('barang', null)->num_rows();
 		$this->load->view('home', $data);
 	}
@@ -24,15 +27,14 @@ class Home extends CI_Controller {
 		$config['upload_path'] = './assets/uploads/';
 		$config['allowed_types'] = 'JPEG|jpg|png';
 		$config['file_name'] = $this->input->post('kode');
-		
+
 		$this->load->library('upload', $config);
-		
-		if ( ! $this->upload->do_upload('inputfile')){
+
+		if (!$this->upload->do_upload('inputfile')) {
 			$error = array('error' => $this->upload->display_errors());
 			$this->session->set_flashdata('toast', 'error:Data berhasil di tambahkan');
 			redirect('Home');
-		}
-		else{
+		} else {
 			$data = array(
 				'nama_barang' => $this->input->post('barang'),
 				'harga' => $this->input->post('harga'),
@@ -41,17 +43,14 @@ class Home extends CI_Controller {
 				'gambar' => $this->upload->data('file_name')
 			);
 			$this->m->ins('barang', $data);
-			$this->session->set_flashdata('toast', 'success:Data berhasil di tambahkan');			
-			redirect('Home','refresh');			
+			$this->session->set_flashdata('toast', 'success:Data berhasil di tambahkan');
+			redirect('Home', 'refresh');
 		}
-		
 	}
 
 	public function beli($id)
 	{
-		
 	}
-
 }
 
 /* End of file Home.php */
