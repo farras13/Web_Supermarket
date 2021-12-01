@@ -33,25 +33,25 @@
 									<input type="hidden" name="tb" id="tb" value="<?= $tb ?>" disabled>
 									<div class="col-md-4">
 										<div class="form-floating">
-											<input class="form-control" id="barang" name="barang" type="text" onChange='getoutput()'>
+											<input class="form-control" id="barang" name="barang" type="text" onChange='getoutput()' required>
 											<label for="barang">Nama Barang</label>
 										</div>
 									</div>
 									<div class="col-md-4">
 										<div class="form-floating">
-											<input class="form-control" id="harga" name="harga" type="number">
+											<input class="form-control" id="harga" name="harga" type="number" required>
 											<label for="harga">Harga</label>
 										</div>
 									</div>
 									<div class="col-md-4">
 										<div class="form-floating">
-											<input class="form-control" id="stok" name="stok" type="number">
+											<input class="form-control" id="stok" name="stok" type="number" required>
 											<label for="stok">Stok</label>
 										</div>
 									</div>
 									<div class="col-md-8">
 										<div class="form-floating">
-											<input class="form-control" id="inputfile" name="inputfile" type="file"  accept="image/png, image/jpeg">
+											<input class="form-control" id="inputfile" name="inputfile" type="file"  accept="image/png, image/jpeg" required>
 											<label for="inputfile">Gambar</label>
 										</div>
 									</div>
